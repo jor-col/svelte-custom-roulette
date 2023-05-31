@@ -1,0 +1,37 @@
+{
+  "name": "svelte-custom-roulette",
+  "version": "1.0.0",
+  "description": "Svelte custom roulette wheel UI library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jor-col/svelte-custom-roulette.git"
+  },
+  "keywords": [
+    "svelte",
+    "custom",
+    "spinning",
+    "spinner",
+    "roulette",
+    "wheel",
+    "picker",
+    "fortune",
+    "prizes",
+    "frontend",
+    "UI",
+    "library",
+    "component",
+    "npm",
+    "package",
+    "tool"
+  ],
+  "author": "codingmustache && colinwilliams91",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jor-col/svelte-custom-roulette/issues"
+  },
+  "homepage": "https://github.com/jor-col/svelte-custom-roulette#readme"
+}
