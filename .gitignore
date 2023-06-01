@@ -4,6 +4,8 @@ node_modules
 
 # environment variables
 *.env
+.env.*
+!.env.example
 
 # IDE - VSCode
 .vscode/*
@@ -17,3 +19,14 @@ node_modules
 logs
 *.log
 npm-debug.log*
+
+package-lock.json
+
+.DS_Store
+
+/build
+
+/.svelte-kit
+/package
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
