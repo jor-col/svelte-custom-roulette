@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": ["src", "dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jor-col/svelte-custom-roulette.git"
@@ -29,7 +30,7 @@
     "tool"
   ],
   "author": "codingmustache && colinwilliams91",
-  "license": "MIT",
+  "license": "UNLICENSE",
   "bugs": {
     "url": "https://github.com/jor-col/svelte-custom-roulette/issues"
   },
