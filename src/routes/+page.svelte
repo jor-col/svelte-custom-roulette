@@ -1,5 +1,5 @@
 <script>
-  import { Hello } from "../lib/index.js";
+  import { Wheel } from "../lib/index.js";
 
   /**
    * Represents a customizable roulette wheel component.
@@ -31,7 +31,8 @@
    */
 </script>
 
-<Hello />
+<Wheel />
+
 <h1>Welcome to your library project</h1>
 <p>
   Create your package using @sveltejs/package and preview/showcase your work
