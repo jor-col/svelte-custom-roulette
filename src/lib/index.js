@@ -1,1 +1,1 @@
-export { default as Hello } from './Hello.svelte';
+export { default as Wheel } from './Wheel.svelte';
