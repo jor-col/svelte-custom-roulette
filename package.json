@@ -10,6 +10,7 @@
 		"package:watch": "svelte-package --watch",
 		"prepublishOnly": "npm run package"
   },
+  "files": ["src", "dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jor-col/svelte-custom-roulette.git"
@@ -33,7 +34,7 @@
     "tool"
   ],
   "author": "codingmustache && colinwilliams91",
-  "license": "MIT",
+  "license": "UNLICENSE",
   "bugs": {
     "url": "https://github.com/jor-col/svelte-custom-roulette/issues"
   },
