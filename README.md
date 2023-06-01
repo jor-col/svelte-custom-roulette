@@ -14,15 +14,53 @@
 </p>
 <br />
 <div align="center">
-  <h2>W.I.P</h2>
+  <h2><b>W.I.P</b></h2>
   <i>As of 5/31/23 this Library is pre-release (v0.0.3) and stable, however, custom wheel functionality has not yet been implemented.</i>
 </div>
 
 <hr />
 <br />
-<main align="center">
-  <h2><b>Contribute:</b></h2>
-</main>
+
+<h2><b>Installation:</b></h2>
+
+```css
+$ npm i svelte-custom-roulette
+```
+
+<a href="https://www.npmjs.com/package/svelte-custom-roulette" target="blank">Published npm package</a>
+
+<br />
+<h2><b>Contribute:</b></h2>
+
+<br />
+<h2><b>License:</b></h2>
+Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed
+
+[UNLICENSE](/UNLICENSE)
+
+<div align="center">
+  <h2><b>API:</b></h2>
+  <article itemprop="text">
+    <table>
+      <thead>
+        <tr>
+          <th>Props</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>name</code></td>
+          <td>string</td>
+          <td>"a string"</td>
+          <td>the description, with an <a href="#API">anchor</a> to documentation inside the README</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</div>
 
 <!-- license -->
 
