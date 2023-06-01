@@ -23,22 +23,13 @@
 
 <h2><b>Installation:</b></h2>
 
-```css
+```javascript
 $ npm i svelte-custom-roulette
 ```
 
 <a href="https://www.npmjs.com/package/svelte-custom-roulette" target="blank">Published npm package</a>
 
-<br />
-<h2><b>Contribute:</b></h2>
-
-<br />
-<h2><b>License:</b></h2>
-Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed
-
-[UNLICENSE](/UNLICENSE)
-
-<div align="center">
+<div class="table-container" align="center">
   <h2><b>API:</b></h2>
   <article itemprop="text">
     <table>
@@ -52,15 +43,30 @@ Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed
       </thead>
       <tbody>
         <tr>
-          <td><code>name</code></td>
-          <td>string</td>
-          <td>"a string"</td>
+          <td><code>items</code></td>
+          <td>Array<String></td>
+          <td>["yes", "no]</td>
           <td>the description, with an <a href="#API">anchor</a> to documentation inside the README</td>
+        </tr>
+        <tr>
+          <td><code>colors</code></td>
+          <td>Array<String></td>
+          <td>["blue", "orange", "purple"]</td>
+          <td>pass an array of strings representing the colors you would like to override wheel segments <a href="#API">anchor</a> to documentation inside the README</td>
         </tr>
       </tbody>
     </table>
   </article>
 </div>
+
+<br />
+<h2><b>Contribute:</b></h2>
+
+<br />
+<h2><b>License:</b></h2>
+Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed
+
+<!-- [UNLICENSE](/UNLICENSE) -->
 
 <!-- license -->
 
