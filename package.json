@@ -1,6 +1,6 @@
 {
   "name": "svelte-custom-roulette",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Svelte custom roulette wheel UI library",
   "scripts": {
     "dev": "vite dev",
