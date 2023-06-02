@@ -1,6 +1,6 @@
 <script>
   import Segment from "./Segment.svelte";
-  export let items = ['yes', 'no'];
+  export let items = ['yes', 'no', 'maybe'];
   let deg = 360 / items.length  
 
 </script>
@@ -19,8 +19,8 @@
     background: linear-gradient(#e66465, #9198e5);
     height: 100%s;
     aspect-ratio: 1/1;
-     clip-path: circle();
-      animation: spin 1.3s linear infinite; 
+    clip-path: circle();
+    animation: spin 1.3s linear 3;
   }
 
   
