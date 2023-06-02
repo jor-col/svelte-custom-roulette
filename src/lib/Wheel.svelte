@@ -1,15 +1,45 @@
 <script>
   import Segment from "./Segment.svelte";
-  export let items = ["yes", "no"];
+  import { onMount } from "svelte";
+  import { select, arc, pie } from "d3";
+  export let items = ["yes", "no", "maybe"];
+  const colors = ["#ff7f0e", "#2ca02c", "#9467bd"];
   let deg = 360 / items.length;
+
+  onMount(() => {
+    const width = 400;
+    const height = 400;
+    const radius = Math.min(width, height) / 2;
+
+    const svg = select("#wheel")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+    const pieGenerator = pie().value(1);
+    const dataWithArc = pieGenerator(items);
+
+    const arcGenerator = arc().innerRadius(0).outerRadius(radius);
+
+    svg
+      .selectAll("path")
+      .data(dataWithArc)
+      .enter()
+      .append("path")
+      .attr("d", arcGenerator)
+      .attr("fill", (d, i) => colors[i]);
+  });
 </script>
 
 <div class="wheel-container">
-  <div class="wheel">
+  <!-- <div class="wheel">
     {#each items as item, index}
       <Segment {item} {deg} {index} />
     {/each}
-  </div>
+  </div> -->
+  <div id="wheel" />
   <img class="pointer" src="src/lib/roulette-pointer.png" alt="pointer" />
 </div>
 

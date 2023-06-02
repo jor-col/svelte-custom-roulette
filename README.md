@@ -15,19 +15,19 @@
 <br />
 <div align="center">
   <h2><b>W.I.P</b></h2>
-  <i>As of 5/31/23 this Library is pre-release (v0.0.3) and stable, however, custom wheel functionality has not yet been implemented.</i>
+  <i>As of 6/01/23 this Library is pre-release (v0.0.4) and stable, however, custom wheel functionality is limited to two items.</i>
 </div>
 
 <hr />
 <br />
 
 <h2><b>Installation:</b></h2>
+<a href="https://www.npmjs.com/package/svelte-custom-roulette" target="blank">Published npm package</a>
+<br />
 
 ```javascript
 $ npm i svelte-custom-roulette
 ```
-
-<a href="https://www.npmjs.com/package/svelte-custom-roulette" target="blank">Published npm package</a>
 
 <div class="table-container" align="center">
   <h2><b>API:</b></h2>
@@ -45,7 +45,7 @@ $ npm i svelte-custom-roulette
         <tr>
           <td><code>items</code></td>
           <td>Array<String></td>
-          <td>["yes", "no]</td>
+          <td>["yes", "no"]</td>
           <td>the description, with an <a href="#API">anchor</a> to documentation inside the README</td>
         </tr>
         <tr>
@@ -58,13 +58,25 @@ $ npm i svelte-custom-roulette
     </table>
   </article>
 </div>
-
+<br />
+<br />
+<hr />
 <br />
 <h2><b>Contribute:</b></h2>
+<b>The JoCo team warmly welcomes contributions to all of our <em>Open Source projects</em>.</b>
+<b>Svelte-Custom-Roulette's contribution protocol is as follows:</b>
+<br />
+<ul>
+<br />
+  <li>Star and Fork the repository</li>
+  <li>Create a feature branch</li>
+  <li>We are fans of <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular Git Commit Protocol</a> so please, loosely, follow this structure; including `header` & `body` syntax including scope and files changed inside your commit message</li>
+  <li>Submit your Pull Request</li>
+</ul>
 
 <br />
 <h2><b>License:</b></h2>
-Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed
+Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed. Please propogate within whatever circumstances you wish.
 
 <!-- [UNLICENSE](/UNLICENSE) -->
 
