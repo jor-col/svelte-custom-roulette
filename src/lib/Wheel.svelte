@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import { select, arc, pie } from "d3";
   export let items = ["yes", "no", "maybe"];
+  const colors = ["#ff7f0e", "#2ca02c", "#9467bd"];
   let deg = 360 / items.length;
 
   onMount(() => {
@@ -17,8 +18,6 @@
       .append("g")
       .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-    const color = ["#ff7f0e", "#2ca02c", "#9467bd"];
-
     const pieGenerator = pie().value(1);
     const dataWithArc = pieGenerator(items);
 
@@ -30,7 +29,7 @@
       .enter()
       .append("path")
       .attr("d", arcGenerator)
-      .attr("fill", (d, i) => color[i]);
+      .attr("fill", (d, i) => colors[i]);
   });
 </script>
 
