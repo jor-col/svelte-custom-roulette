@@ -1,35 +1,55 @@
 <script>
-  import Segment from "./Segment.svelte";
-  export let items = ['yes', 'no', 'maybe'];
-  let deg = 360 / items.length  
+  import Pointer from './Pointer.svelte'
+  import { onMount } from "svelte";
+  import { select, arc, pie } from "d3";
+  export let pointer = 'green'
+  export let items = ["yes", "no", "maybe", 'test', 'test' , 'test', 'test', 'test'];
+  const generateColors = () => `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+  export let colors = Array.from({length: items.length}, generateColors)
+  const spinDuration = 4500;
+  
+  /* wheel sizes */
+  const size = 400;
+  const radius = Math.min(size, size) / 2;
+  const spinDeg = items.length * 10
+  const spinWheel = () => {
+    setTimeout(() => {}, spinDuration);
+  };
 
+  onMount(() => {
+    const svg = select(".wheel").append("svg").attr("width", size).attr("height", size).append("g").attr("transform", `translate(${size / 2}, ${size / 2})`);
+    const pieGenerator = pie().value(1);
+    const dataWithArc = pieGenerator(items);
+    const arcGenerator = arc().innerRadius(0).outerRadius(radius);
+    svg.selectAll("path").data(dataWithArc).enter().append("path").attr("d", arcGenerator).attr("fill", (d, i) => colors[i]);
+  });
 </script>
 
 
-<div class='wheel'>
-  {#each items as item, index}
-    <Segment {item} {deg} {index}/>
-  {/each}
+<div class="wheel-container" id="wheel-container">
+  <div style="width .35s ease-in-out; transform: rotate({spinDeg}deg)" class="wheel" />
+  <Pointer {pointer}/>
 </div>
-
-
+<button class="spin-button" on:click={spinWheel}>Spin!</button>
 
 <style>
-  .wheel{
-    background: linear-gradient(#e66465, #9198e5);
-    height: 100%s;
-    aspect-ratio: 1/1;
-    clip-path: circle();
-    animation: spin 1.3s linear 3;
+  .wheel-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
   }
 
-  
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  } 
+  .wheel {
+    clip-path: circle();    
+  }
+
+  .spin-button {
+    position: absolute;
+    top: 75%;
+    left: 49%;
+  }
+
 </style>
