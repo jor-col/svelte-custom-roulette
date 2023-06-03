@@ -3,15 +3,24 @@
   import { onMount } from "svelte";
   import { select, arc, pie } from "d3";
   export let items = ["yes", "no", "maybe"];
-  const colors = ["#ff7f0e", "#2ca02c", "#9467bd"];
+  export const colors = ["#18D2AD", "#8236AD", "#7098E9"];
+  const spinDuration = 4500;
+  let spin = "";
+  /* wheel sizes */
   let deg = 360 / items.length;
+  const width = 400;
+  const height = 400;
+  const radius = Math.min(width, height) / 2;
+
+  const spinWheel = () => {
+    spin = "wheelSpin";
+    setTimeout(() => {
+      spin = "";
+    }, spinDuration);
+  };
 
   onMount(() => {
-    const width = 400;
-    const height = 400;
-    const radius = Math.min(width, height) / 2;
-
-    const svg = select("#wheel")
+    const svg = select(".wheel")
       .append("svg")
       .attr("width", width)
       .attr("height", height)
@@ -33,18 +42,20 @@
   });
 </script>
 
-<div class="wheel-container">
+<div class="wheel-container" id="wheel-container">
   <!-- <div class="wheel">
     {#each items as item, index}
       <Segment {item} {deg} {index} />
     {/each}
   </div> -->
-  <div id="wheel" />
-  <img class="pointer" src="src/lib/roulette-pointer.png" alt="pointer" />
+  <div class={spin + " wheel"} />
+  <img class="pointer" src="src/lib/roulette-pointer.svg" alt="pointer SVG" />
 </div>
+<button class="spin-button" on:click={spinWheel}>Spin!</button>
 
 <style>
   .wheel-container {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,21 +63,36 @@
     width: 100%;
   }
 
-  .wheel {
+  /* old wheel */
+  /* .wheel {
     background: linear-gradient(#e66465, #9198e5);
     width: 50%;
     aspect-ratio: 1/1;
     clip-path: circle();
-    animation: spin 1.3s linear 2;
+    animation: spin 1 linear 2;
+  } */
+
+  .wheel {
+    clip-path: circle();
+  }
+
+  .wheelSpin {
+    animation: spin 1s linear infinite;
   }
 
   .pointer {
     position: absolute;
     top: 50%;
-    left: 48.7%;
-    transform: rotate(135deg);
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(136deg);
     height: 50px;
     width: 50px;
+  }
+
+  .spin-button {
+    position: absolute;
+    top: 75%;
+    left: 49%;
   }
 
   @keyframes spin {
