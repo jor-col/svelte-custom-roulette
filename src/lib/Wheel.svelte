@@ -2,14 +2,18 @@
   import Pointer from './Pointer.svelte'
   import { onMount } from "svelte";
   import { select, arc, pie } from "d3";
-  export let pointer = 'green'
-  export let items = ["yes", "no", "maybe", 'test', 'test' , 'test', 'test', 'test'];
+
   const generateColors = () => `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+  
+  // passed down props
+  export let pointer = 'black'
+  export let items = ["yes", "no", "maybe"];
   export let colors = Array.from({length: items.length}, generateColors)
+  export let size = 400;
+  
   const spinDuration = 4500;
   
   /* wheel sizes */
-  const size = 400;
   const radius = Math.min(size, size) / 2;
   const spinDeg = items.length * 10
   const spinWheel = () => {
