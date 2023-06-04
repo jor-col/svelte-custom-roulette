@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <h2><b>W.I.P</b></h2>
-  <i>As of 6/01/23 this Library is pre-release (v0.0.4) and stable, however, custom wheel functionality is limited to two items.</i>
+  <i>As of 6/04/23 this Library is pre-release (v0.0.6) and stable, however, custom wheel functionality is limited to three items.</i>
 </div>
 
 <hr />
