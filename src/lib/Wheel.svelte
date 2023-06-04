@@ -8,12 +8,12 @@
   // passed down props
   export let pointer = 'black'
   export let items = ["yes", "no"];
-  export let colors = Array.from({length: items.length}, generateColors)
+  export let colors = colors.length != items.length ?  Array.from({length: items.length}, generateColors) : colors
   export let size = 400;
+  export let pointerSize = size / 8;
   
-   $: spinDeg = 0
-  
-  
+  $: spinDeg = 0
+
   /* wheel sizes */
   const radius = Math.min(size, size) / 2;
   
@@ -36,8 +36,8 @@
 
 
 <div class="wheel-container" id="wheel-container">
-  <div style="transition: 1s ease-in-out; transform: rotate({spinDeg}deg)" class="wheel" />
-  <Pointer {pointer}/>
+  <div style="transform: rotate({spinDeg}deg)" class="wheel" />
+  <Pointer {pointer} {pointerSize}/>
 </div>
 <button class="spin-button" on:click={spinWheel}>Spin!</button>
 
@@ -52,6 +52,7 @@
   }
 
   .wheel {
+    transition: 1s ease-in-out;
     clip-path: circle();    
   }
 
