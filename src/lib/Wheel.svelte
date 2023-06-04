@@ -7,17 +7,22 @@
   
   // passed down props
   export let pointer = 'black'
-  export let items = ["yes", "no", "maybe"];
+  export let items = ["yes", "no"];
   export let colors = Array.from({length: items.length}, generateColors)
   export let size = 400;
   
-  const spinDuration = 4500;
+   $: spinDeg = 0
+  
   
   /* wheel sizes */
   const radius = Math.min(size, size) / 2;
-  const spinDeg = items.length * 10
+  
   const spinWheel = () => {
-    setTimeout(() => {}, spinDuration);
+    let i = Math.floor(Math.random() * (10000 - 800) + 800)
+    while(i > spinDeg){
+      console.log(spinDeg)
+      setInterval(spinDeg+=1, 5000)
+    }
   };
 
   onMount(() => {
@@ -31,7 +36,7 @@
 
 
 <div class="wheel-container" id="wheel-container">
-  <div style="width .35s ease-in-out; transform: rotate({spinDeg}deg)" class="wheel" />
+  <div style="transition: 1s ease-in-out; transform: rotate({spinDeg}deg)" class="wheel" />
   <Pointer {pointer}/>
 </div>
 <button class="spin-button" on:click={spinWheel}>Spin!</button>
