@@ -14,7 +14,7 @@
 </p>
 <br />
 <div align="center">
-  <h2><b><a href="#experimental" aria-hidden="true" color="white">W.I.P<a></b></h2>
+  <h2><b><a href="#experimental" aria-hidden="true" color="white">W.I.P</a></b></h2>
   <i>As of 6/04/23 this Library is pre-release (v0.0.8). It is stable and can accept props, however, custom labels need to be rotated.</i>
 </div>
 
