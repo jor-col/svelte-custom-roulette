@@ -31,7 +31,7 @@
    */
 </script>
 
-<Wheel items={['yes', 'no', 'maybe', 'no']}   pointer="purple" colors={["green", 'blue']}/>
+<Wheel  />
 
 <h1>Welcome to your library project</h1>
 <p>

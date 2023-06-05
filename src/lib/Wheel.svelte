@@ -10,25 +10,18 @@
 
   // passed down props
   export let pointer = "black";
-  export let items = ["yes", "no"];
-  export let colors =
-    colors.length != items.length
-      ? Array.from({ length: items.length }, generateColors)
-      : colors;
+  export let items = ["yes", "no", "maybe"];
+  export let colors = Array.from({ length: items.length }, generateColors);
   export let size = 400;
   export let pointerSize = size / 8;
 
-  $: spinDeg = 0;
+  $: spinDeg = 360 / items.length;
 
   /* wheel sizes */
   const radius = Math.min(size, size) / 2;
 
   const spinWheel = () => {
-    let i = Math.floor(Math.random() * (10000 - 800) + 800);
-    while (i > spinDeg) {
-      console.log(spinDeg);
-      setInterval((spinDeg += 1), 5000);
-    }
+    spinDeg = Math.floor(Math.random() * (10000 - 800) + 800);
   };
 
   onMount(() => {
@@ -47,7 +40,10 @@
       .enter()
       .append("path")
       .attr("d", arcGenerator)
-      .attr("fill", (d, i) => colors[i]);
+      .attr("fill", (d, i) => colors[i])
+      .append("text")
+      .text((_, i) => items[i])
+      .attr("x = 50 y= 50");
   });
 </script>
 
@@ -68,8 +64,8 @@
   }
 
   .wheel {
-    transition: 1s ease-in-out;
-    clip-path: circle();
+    clip-path: circle(45%);
+    transition: 2s ease-in-out;
   }
 
   .spin-button {
