@@ -9,36 +9,12 @@
     )}, ${Math.floor(Math.random() * 255)})`;
 
   // passed down props
+  export let pointer = "black";
   export let items = ["yes", "no", "maybe"];
   export let colors = Array.from({ length: items.length }, generateColors);
-
-  export let pointer = "black";
   export let size = 400;
   export let pointerSize = size / 8;
-
   export let textColor = "black";
-  // let i = 0;
-  // let lastIdx = colors.length - 1;
-
-  // attempt at non-repeating color patterns
-  // if (items.length > colors.length) {
-  //   while (colors.length < items.length) {
-  //     console.log("I:", i);
-  //     console.log("COLORS[0]:", colors[0], "COLORS[I]:", colors[i]);
-  //     console.log(colors.length - 1);
-  //     if (colors[i - 1] === colors[i] || colors[i + 1] === colors[i]) {
-  //       console.log("!!!!!!!!");
-  //       colors.push(colors[i + 2]);
-  //     } else if (colors[i] === colors[0] && i + lastIdx === colors.length - 1) {
-  //       console.log(Math.floor(colors.length / 2));
-  //       colors.push(colors[Math.floor(colors.length / 2)]);
-  //     } else {
-  //       console.log(colors[i]);
-  //       colors.push(colors[i]);
-  //     }
-  //     ++i;
-  //   }
-  // }
 
   $: spinDeg = 360 / items.length;
 
@@ -60,26 +36,27 @@
     const dataWithArc = pieGenerator(items);
     const arcGenerator = arc().innerRadius(0).outerRadius(radius);
     svg
-      .selectAll("path")
+      .selectAll("mySlices")
       .data(dataWithArc)
       .enter()
       .append("path")
       .attr("d", arcGenerator)
-      .attr(
-        "fill",
-        (_, i, arr) =>
-          // colors[i] !== undefined ? colors[i] : colors[arr.length % i]
-          colors[i]
-      )
+      .attr("fill", (d, i) => colors[i]);
+    svg
+      .selectAll("mySlices")
+      .data(dataWithArc)
+      .enter()
       .append("text")
       .text((_, i) => items[i])
-      .attr("x = 50 y= 50")
-      .attr(`color = ${textColor}`);
+      .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
+      .style("font-size", 17)
+      .attr("fill", "white")
+      .style("rotate", (_, i) => `${(360 / items.length) * i}turn`);
   });
 </script>
 
 <div class="wheel-container" id="wheel-container">
-  <div style="transform: rotate({spinDeg}deg)" class="wheel" />
+  <div style="rotate :{spinDeg}deg" class="wheel" />
   <Pointer {pointer} {pointerSize} />
 </div>
 <button class="spin-button" on:click={spinWheel}>Spin!</button>
