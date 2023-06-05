@@ -31,7 +31,7 @@ $ npm i svelte-custom-roulette
 
 <br />
 <h2><b>Quick Start</b></h2>
-
+```javascript
     <script>
       import { Wheel } from "svelte-custom-roulette";
 
@@ -50,7 +50,7 @@ $ npm i svelte-custom-roulette
         >
 
     </script>
-
+```
 <div class="table-container" align="center">
 <h2><b>API</b></h2>
 <article itemprop="text">
