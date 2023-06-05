@@ -70,7 +70,7 @@ $ npm i svelte-custom-roulette
           <td><code>pointerSize</code></td>
           <td><Number></td>
           <td>50</td>
-          <td>pass a number to size the pointer in the center of the wheel, by default this will be 1/4 of the wheel size<a href="#API">anchor</a></td>
+          <td>pass a number to size the pointer in the center of the wheel, by default this will be 1/8 of the wheel size<a href="#API">anchor</a></td>
         </tr>
       </tbody>
     </table>

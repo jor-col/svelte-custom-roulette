@@ -10,10 +10,33 @@
 
   // passed down props
   export let pointer = "black";
-  export let items = ["yes", "no", "maybe"];
+  export let items = ["yes", "no", "no"];
   export let colors = Array.from({ length: items.length }, generateColors);
   export let size = 400;
   export let pointerSize = size / 8;
+
+  // let i = 0;
+  // let lastIdx = colors.length - 1;
+
+  // attempt at non-repeating color patterns
+  // if (items.length > colors.length) {
+  //   while (colors.length < items.length) {
+  //     console.log("I:", i);
+  //     console.log("COLORS[0]:", colors[0], "COLORS[I]:", colors[i]);
+  //     console.log(colors.length - 1);
+  //     if (colors[i - 1] === colors[i] || colors[i + 1] === colors[i]) {
+  //       console.log("!!!!!!!!");
+  //       colors.push(colors[i + 2]);
+  //     } else if (colors[i] === colors[0] && i + lastIdx === colors.length - 1) {
+  //       console.log(Math.floor(colors.length / 2));
+  //       colors.push(colors[Math.floor(colors.length / 2)]);
+  //     } else {
+  //       console.log(colors[i]);
+  //       colors.push(colors[i]);
+  //     }
+  //     ++i;
+  //   }
+  // }
 
   $: spinDeg = 360 / items.length;
 
@@ -40,7 +63,12 @@
       .enter()
       .append("path")
       .attr("d", arcGenerator)
-      .attr("fill", (d, i) => colors[i])
+      .attr(
+        "fill",
+        (_, i, arr) =>
+          // colors[i] !== undefined ? colors[i] : colors[arr.length % i]
+          colors[i]
+      )
       .append("text")
       .text((_, i) => items[i])
       .attr("x = 50 y= 50");
