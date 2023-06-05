@@ -30,7 +30,7 @@ $ npm i svelte-custom-roulette
 ```
 
 <br />
-<h2><b>Quick Start</b></h2>
+## Quick Start
 
     ```javascript
     
@@ -71,7 +71,9 @@ $ npm i svelte-custom-roulette
       <tr>
         <td><code>items</code></td>
         <td>String[]</td>
+        
         <td><code>["yes", "no", "maybe"]</code></td>
+        
         <td>pass an array to populate wheel segments with custom items to documentation inside the README</td>
       </tr>
       <tr>
@@ -90,7 +92,7 @@ $ npm i svelte-custom-roulette
         <td><code>textColor</code></td>
         <td>String</td>
         <td><code>"white"</code></td>
-        <td>pass a color to override the `color` of wheel segments' text to documentation inside the README</td>
+        <td>pass a color to override the color of wheel segments' text to documentation inside the README</td>
       </tr>
       <tr>
         <td><code>pointerColor</code></td>
@@ -120,7 +122,7 @@ $ npm i svelte-custom-roulette
 <br />
 <li>Star and Fork the repository</li>
 <li>Create a feature branch</li>
-<li>We are fans of <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular Git Commit Protocol</a> so please, loosely, follow this structure; including `header` & `body` syntax including scope and files changed inside your commit message</li>
+<li>We are fans of <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular Git Commit Protocol</a> so please, loosely, follow this structure; including header & body syntax including scope and files changed inside your commit message</li>
 <li>Submit your Pull Request</li>
 </ul>
 
