@@ -26,13 +26,14 @@
     const pieGenerator = pie().value(1);
     const dataWithArc = pieGenerator(items);
     const arcGenerator = arc().innerRadius(0).outerRadius(radius);
-    svg.selectAll("path").data(dataWithArc).enter().append("path").attr("d", arcGenerator).attr("fill", (d, i) => colors[i]).append('text').text((_, i)=> items[i]).attr('x = 50 y= 50');
+    svg.selectAll("mySlices").data(dataWithArc).enter().append("path").attr("d", arcGenerator).attr("fill", (d, i) => colors[i])    
+    svg.selectAll('mySlices').data(dataWithArc).enter().append('text').text((_,i)=> items[i]).attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`).style("font-size", 17).attr('fill', 'white').style('rotate', (_, i)=> `${((360/items.length) * i)  }turn`)
   });
 </script>
 
 
 <div class="wheel-container" id="wheel-container">
-  <div style="transform: rotate({spinDeg}deg)" class="wheel" />
+  <div style="rotate :{spinDeg}deg" class="wheel" />
   <Pointer {pointer} {pointerSize}/> 
 </div>
 <button class="spin-button" on:click={spinWheel}>Spin!</button>
