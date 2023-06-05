@@ -9,7 +9,7 @@
     )}, ${Math.floor(Math.random() * 255)})`;
 
   // passed down props
-  export let pointer = "black";
+  export let pointerColor = "black";
   export let items = ["yes", "no", "maybe"];
   export let colors = Array.from({ length: items.length }, generateColors);
   export let size = 400;
@@ -57,7 +57,7 @@
 
 <div class="wheel-container" id="wheel-container">
   <div style="rotate :{spinDeg}deg" class="wheel" />
-  <Pointer {pointer} {pointerSize} />
+  <Pointer {pointerColor} {pointerSize} />
 </div>
 <button class="spin-button" on:click={spinWheel}>Spin!</button>
 
