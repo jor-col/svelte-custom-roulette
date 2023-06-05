@@ -14,7 +14,7 @@
   export let colors = Array.from({ length: items.length }, generateColors);
   export let size = 400;
   export let pointerSize = size / 8;
-  export let textColor = "black";
+  export let textColor = "white";
 
   $: spinDeg = 360 / items.length;
 
@@ -50,7 +50,7 @@
       .text((_, i) => items[i])
       .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
       .style("font-size", 17)
-      .attr("fill", "white")
+      .style("fill", textColor)
       .style("rotate", (_, i) => `${(360 / items.length) * i}turn`);
   });
 </script>
