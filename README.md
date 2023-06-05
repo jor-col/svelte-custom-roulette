@@ -52,7 +52,9 @@ $ npm i svelte-custom-roulette
         >
 
     </script>
+      
 ```
+      
 <div class="table-container" align="center">
 <h2><b>API</b></h2>
 <article itemprop="text">
