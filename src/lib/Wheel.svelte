@@ -7,22 +7,18 @@
   
   // passed down props
   export let pointer = 'black'
-  export let items = ["yes", "no"];
-  export let colors = colors.length != items.length ?  Array.from({length: items.length}, generateColors) : colors
+  export let items = ["yes", "no", 'maybe'];
+  export let colors = Array.from({length: items.length}, generateColors) 
   export let size = 400;
   export let pointerSize = size / 8;
   
-  $: spinDeg = 0
+  $: spinDeg = (360 / items.length)
 
   /* wheel sizes */
   const radius = Math.min(size, size) / 2;
   
   const spinWheel = () => {
-    let i = Math.floor(Math.random() * (10000 - 800) + 800)
-    while(i > spinDeg){
-      console.log(spinDeg)
-      setInterval(spinDeg+=1, 5000)
-    }
+    spinDeg = Math.floor(Math.random() * (10000 - 800) + 800)
   };
 
   onMount(() => {
@@ -30,14 +26,14 @@
     const pieGenerator = pie().value(1);
     const dataWithArc = pieGenerator(items);
     const arcGenerator = arc().innerRadius(0).outerRadius(radius);
-    svg.selectAll("path").data(dataWithArc).enter().append("path").attr("d", arcGenerator).attr("fill", (d, i) => colors[i]);
+    svg.selectAll("path").data(dataWithArc).enter().append("path").attr("d", arcGenerator).attr("fill", (d, i) => colors[i]).append('text').text((_, i)=> items[i]).attr('x = 50 y= 50');
   });
 </script>
 
 
 <div class="wheel-container" id="wheel-container">
   <div style="transform: rotate({spinDeg}deg)" class="wheel" />
-  <Pointer {pointer} {pointerSize}/>
+  <Pointer {pointer} {pointerSize}/> 
 </div>
 <button class="spin-button" on:click={spinWheel}>Spin!</button>
 
@@ -51,9 +47,9 @@
     width: 100%;
   }
 
-  .wheel {
-    transition: 1s ease-in-out;
-    clip-path: circle();    
+  .wheel{
+    clip-path:circle(45%);
+    transition: 2s ease-in-out;
   }
 
   .spin-button {
