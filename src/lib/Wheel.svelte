@@ -1,43 +1,59 @@
 <script>
-  import Pointer from './Pointer.svelte'
+  import Pointer from "./Pointer.svelte";
   import { onMount } from "svelte";
   import { select, arc, pie } from "d3";
 
-  const generateColors = () => `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
-  
+  const generateColors = () =>
+    `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
+      Math.random() * 255
+    )}, ${Math.floor(Math.random() * 255)})`;
+
   // passed down props
-  export let pointer = 'black'
+  export let pointer = "black";
   export let items = ["yes", "no"];
-  export let colors = colors.length != items.length ?  Array.from({length: items.length}, generateColors) : colors
+  export let colors =
+    colors.length != items.length
+      ? Array.from({ length: items.length }, generateColors)
+      : colors;
   export let size = 400;
   export let pointerSize = size / 8;
-  
-  $: spinDeg = 0
+
+  $: spinDeg = 0;
 
   /* wheel sizes */
   const radius = Math.min(size, size) / 2;
-  
+
   const spinWheel = () => {
-    let i = Math.floor(Math.random() * (10000 - 800) + 800)
-    while(i > spinDeg){
-      console.log(spinDeg)
-      setInterval(spinDeg+=1, 5000)
+    let i = Math.floor(Math.random() * (10000 - 800) + 800);
+    while (i > spinDeg) {
+      console.log(spinDeg);
+      setInterval((spinDeg += 1), 5000);
     }
   };
 
   onMount(() => {
-    const svg = select(".wheel").append("svg").attr("width", size).attr("height", size).append("g").attr("transform", `translate(${size / 2}, ${size / 2})`);
+    const svg = select(".wheel")
+      .append("svg")
+      .attr("width", size)
+      .attr("height", size)
+      .append("g")
+      .attr("transform", `translate(${size / 2}, ${size / 2})`);
     const pieGenerator = pie().value(1);
     const dataWithArc = pieGenerator(items);
     const arcGenerator = arc().innerRadius(0).outerRadius(radius);
-    svg.selectAll("path").data(dataWithArc).enter().append("path").attr("d", arcGenerator).attr("fill", (d, i) => colors[i]);
+    svg
+      .selectAll("path")
+      .data(dataWithArc)
+      .enter()
+      .append("path")
+      .attr("d", arcGenerator)
+      .attr("fill", (d, i) => colors[i]);
   });
 </script>
 
-
 <div class="wheel-container" id="wheel-container">
   <div style="transform: rotate({spinDeg}deg)" class="wheel" />
-  <Pointer {pointer} {pointerSize}/>
+  <Pointer {pointer} {pointerSize} />
 </div>
 <button class="spin-button" on:click={spinWheel}>Spin!</button>
 
@@ -53,7 +69,7 @@
 
   .wheel {
     transition: 1s ease-in-out;
-    clip-path: circle();    
+    clip-path: circle();
   }
 
   .spin-button {
@@ -61,5 +77,4 @@
     top: 75%;
     left: 49%;
   }
-
 </style>
