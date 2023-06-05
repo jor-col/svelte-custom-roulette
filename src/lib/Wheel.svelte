@@ -9,12 +9,14 @@
     )}, ${Math.floor(Math.random() * 255)})`;
 
   // passed down props
-  export let pointer = "black";
-  export let items = ["yes", "no", "no"];
+  export let items = ["yes", "no", "maybe"];
   export let colors = Array.from({ length: items.length }, generateColors);
+
+  export let pointer = "black";
   export let size = 400;
   export let pointerSize = size / 8;
 
+  export let textColor = "black";
   // let i = 0;
   // let lastIdx = colors.length - 1;
 
@@ -71,7 +73,8 @@
       )
       .append("text")
       .text((_, i) => items[i])
-      .attr("x = 50 y= 50");
+      .attr("x = 50 y= 50")
+      .attr(`color = ${textColor}`);
   });
 </script>
 

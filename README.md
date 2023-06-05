@@ -45,7 +45,7 @@ $ npm i svelte-custom-roulette
         <tr>
           <td><code>items</code></td>
           <td>String[]</td>
-          <td>["yes", "no"]</td>
+          <td>["yes", "no", "maybe"]</td>
           <td>the description, with an <a href="#API">anchor</a> to documentation inside the README</td>
         </tr>
         <tr>
