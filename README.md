@@ -14,7 +14,7 @@
 </p>
 <br />
 <div align="center">
-  <h2><b>W.I.P</b></h2>
+  <h2><b><a href="#experimental" aria-hidden="true" color="white">W.I.P<a></b></h2>
   <i>As of 6/04/23 this Library is pre-release (v0.0.8). It is stable and can accept props, however, custom labels need to be rotated.</i>
 </div>
 
@@ -80,7 +80,7 @@ $ npm i svelte-custom-roulette
         <td><code>colors</code></td>
         <td>String[]</td>
         <td><code>[randomly generated `=== items.length`]</code></td>
-        <td>pass an array of strings representing the colors you would like to override wheel segments. <i>this prop is experimental</i></td>
+        <td>pass an array of strings representing the colors you would like to override wheel segments. <i>this prop is <a href="#experimental">experimental</a></i></td>
       </tr>
       <tr>
         <td><code>textColor</code></td>
