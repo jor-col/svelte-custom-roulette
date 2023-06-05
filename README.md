@@ -49,10 +49,28 @@ $ npm i svelte-custom-roulette
           <td>the description, with an <a href="#API">anchor</a> to documentation inside the README</td>
         </tr>
         <tr>
+          <td><code>size</code></td>
+          <td><Number></td>
+          <td>200</td>
+          <td>pass a number for the size of the wheel, default 400px, aspect ratio 1<a href="#API">anchor</a></td>
+        </tr>
+        <tr>
           <td><code>colors</code></td>
           <td>Array<String></td>
           <td>["blue", "orange", "purple"]</td>
           <td>pass an array of strings representing the colors you would like to override wheel segments <a href="#API">anchor</a> to documentation inside the README</td>
+        </tr>
+        <tr>
+          <td><code>pointer</code></td>
+          <td><String></td>
+          <td>"green"</td>
+          <td>pass a string for the color of the pointer you want<a href="#API">anchor</a></td>
+        </tr>
+        <tr>
+          <td><code>pointerSize</code></td>
+          <td><Number></td>
+          <td>50</td>
+          <td>pass a number to size the pointer in the center of the wheel, by default this will be 1/4 of the wheel size<a href="#API">anchor</a></td>
         </tr>
       </tbody>
     </table>
