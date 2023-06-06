@@ -3,24 +3,29 @@
   import { onMount, tick } from "svelte";
   import { select, arc, pie } from "d3";
 
-  const generateColors = () => `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
-  
+  const generateColors = () =>
+    `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
+      Math.random() * 255
+    )}, ${Math.floor(Math.random() * 255)})`;
+
   // passed down props
-  export let pointer = 'black'
-  tick()
-  export let items = ["yes", "no", 'maybe'];
-  export let colors = Array.from({length: items.length}, generateColors) 
+
+  export let pointerColor = "black";
+  export let items = ["yes", "no", "maybe"];
+  export let colors = Array.from({ length: items.length }, generateColors);
   export let size = 400;
   export let pointerSize = size / 8;
-  $: items
-  $: spinDeg = (360 / items.length)
+  export let textColor = "white";
+
+  $: spinDeg = 360 / items.length;
 
   /* wheel sizes */
   const radius = Math.min(size, size) / 2;
-  
+
   const spinWheel = () => {
-    spinDeg = Math.floor(Math.random() * (10000 - 800) + 800)
+    spinDeg = Math.floor(Math.random() * (10000 - 800) + 800);
   };
+
 
   const svgRender = async() =>{
     await tick()
@@ -33,14 +38,13 @@
   }
   
   
-  
   onMount(svgRender);
 </script>
 
-
 <div class="wheel-container" id="wheel-container">
-  <div style="rotate:{spinDeg}deg" class="wheel" />
-  <Pointer {pointer} {pointerSize}/> 
+  <div style="rotate :{spinDeg}deg" class="wheel" />
+  <Pointer {pointerColor} {pointerSize} />
+
 </div>
 <button class="spin-button" on:click={spinWheel}>Spin!</button>
 
@@ -54,8 +58,8 @@
     width: 100%;
   }
 
-  .wheel{
-    clip-path:circle(45%);
+  .wheel {
+    clip-path: circle(45%);
     transition: 2s ease-in-out;
   }
 
@@ -64,5 +68,4 @@
     top: 75%;
     left: 49%;
   }
-
 </style>
