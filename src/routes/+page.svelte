@@ -29,6 +29,22 @@
    * @param {string[]} [n=["orange", "blue", "purple"]] - takes one argument array of strings to map segment colors
    * @returns {void}
    */
+  $: items = []
+  $: name = ''
+  const addName = i => {
+    items = [...items, name]
+    console.log(items)
+    }
 </script>
 
-<Wheel />
+
+<form>
+  <input bind:value={name} type="text">
+  <button on:click={addName}>Add</button>
+</form>
+
+{#each items as item}
+  <p>{item}</p>
+{/each}
+
+<Wheel {items}/>
