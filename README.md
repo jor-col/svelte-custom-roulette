@@ -15,47 +15,46 @@
 <br />
 <div align="center">
   <h2><b><a href="#experimental" aria-hidden="true" color="white">W.I.P</a></b></h2>
-  <i>As of 6/04/23 this Library is pre-release (v0.0.8). It is stable and can accept props, however, custom labels need to be rotated.</i>
+  <i>As of 6/04/23 this Library is pre-release (v0.0.8). It is stable and can accept props, however, custom labels need to be rotated.</i> <a href="https://www.npmjs.com/package/svelte-custom-roulette" target="blank">published npm package</a>
 </div>
 
 <hr />
 <br />
 
-<h2><b>Installation</b></h2>
-  <a href="https://www.npmjs.com/package/svelte-custom-roulette" target="blank">Published npm package</a>
-<br />
+<div align="center">
+  <h2><b>Installation</b></h2>
+</div>
 
 ```javascript
 $ npm i svelte-custom-roulette
 ```
 
 <br />
+<h2 align="center"><b>
+  Quick Start
+</b></h2>
 
-    ## Quick Start
+```javascript
+   <script>
+     import { Wheel } from "svelte-custom-roulette";
 
- ```javascript
-    
-    <script>
-      import { Wheel } from "svelte-custom-roulette";
+     const items = [
+       "item 1",
+       "item 2",
+       "item 3",
+     ]
 
-      const items = [
-        "item 1",
-        "item 2",
-        "item 3",
-      ]
+     <Wheel
+       {items}
+       size={800}
+       textColor="black"
+       pointerColor="purple"
+       pointerSize={60}
+       >
 
-      <Wheel
-        {items}
-        size={800}
-        textColor="black"
-        pointerColor="purple"
-        pointerSize={60}
-        >
-
-    </script>
-      
+   </script>
 ```
-      
+
 <div class="table-container" align="center">
 <h2><b>API</b></h2>
 <article itemprop="text">
@@ -72,9 +71,7 @@ $ npm i svelte-custom-roulette
       <tr>
         <td><code>items</code></td>
         <td>String[]</td>
-        
         <td><code>["yes", "no", "maybe"]</code></td>
-        
         <td>pass an array to populate wheel segments with custom items to documentation inside the README</td>
       </tr>
       <tr>
@@ -108,6 +105,7 @@ $ npm i svelte-custom-roulette
         <td>pass a number to size the pointer in <code>px</code> to the center of the wheel, by default this will be 1/8 of the wheel size</td>
       </tr>
     </tbody>
+
   </table>
 </article>
 </div>
@@ -115,7 +113,7 @@ $ npm i svelte-custom-roulette
 <br />
 <hr />
 <br />
-<h2><b>Contribute</b></h2>
+<h2 align="center"><b>Contribute</b></h2>
 <b>The JoCo team warmly welcomes contributions to all of our <em>Open Source projects</em>.</b>
 <b>Svelte-Custom-Roulette's contribution protocol is as follows:</b>
 <br />
@@ -128,7 +126,7 @@ $ npm i svelte-custom-roulette
 </ul>
 
 <br />
-<h2><b>License</b></h2>
+<h2 align="center"><b>License</b></h2>
 Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed. Please propogate within whatever circumstances you wish.
 <!-- [UNLICENSE](/UNLICENSE) -->
 
