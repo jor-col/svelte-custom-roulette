@@ -35,24 +35,24 @@ $ npm i svelte-custom-roulette
 </b></h2>
 
 ```javascript
-   <script>
-     import { Wheel } from "svelte-custom-roulette";
+<script>
+  import { Wheel } from "svelte-custom-roulette";
 
-     const items = [
-       "item 1",
-       "item 2",
-       "item 3",
-     ]
+  const items = [
+    "item 1",
+    "item 2",
+    "item 3",
+  ]
 
-     <Wheel
-       {items}
-       size={800}
-       textColor="black"
-       pointerColor="purple"
-       pointerSize={60}
-       >
+  <Wheel
+    {items}
+    size={800}
+    textColor="black"
+    pointerColor="purple"
+    pointerSize={60}
+    >
 
-   </script>
+</script>
 ```
 
 <div class="table-container" align="center">
@@ -83,7 +83,7 @@ $ npm i svelte-custom-roulette
       <tr>
         <td><code>colors</code></td>
         <td>String[]</td>
-        <td><code>[randomly generated `=== items.length`]</code></td>
+        <td><code>[randomly generated === items.length]</code></td>
         <td>pass an array of strings representing the colors you would like to override wheel segments. <i>this prop is <a href="#experimental">experimental</a></i></td>
       </tr>
       <tr>
@@ -114,7 +114,7 @@ $ npm i svelte-custom-roulette
 <hr />
 <br />
 <h2 align="center"><b>Contribute</b></h2>
-<b>The JoCo team warmly welcomes contributions to all of our <em>Open Source projects</em>.</b>
+<b>The JoCo team warmly welcomes contributions to all of our <em>Open Source</em> projects.</b>
 <b>Svelte-Custom-Roulette's contribution protocol is as follows:</b>
 <br />
 <ul>
@@ -128,6 +128,7 @@ $ npm i svelte-custom-roulette
 <br />
 <h2 align="center"><b>License</b></h2>
 Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed. Please propogate within whatever circumstances you wish.
+
 <!-- [UNLICENSE](/UNLICENSE) -->
 
 <!-- license -->
