@@ -87,7 +87,7 @@
     aspect-ratio: 1;
     top: 50%;
     left: 50%;
-    background-color: black;
+    background-color: transparent;
     border: none;
     cursor: pointer;
   }
