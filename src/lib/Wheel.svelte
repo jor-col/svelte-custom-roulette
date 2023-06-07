@@ -1,5 +1,5 @@
 <script>
-  import Pointer from './Pointer.svelte'
+  import Pointer from "./Pointer.svelte";
   import { onMount, tick } from "svelte";
   import { select, arc, pie } from "d3";
 
@@ -26,27 +26,44 @@
     spinDeg = Math.floor(Math.random() * (10000 - 800) + 800);
   };
 
-
-  const svgRender = async() =>{
-    await tick()
-    const svg = select(".wheel").append("svg").attr("width", size).attr("height", size).append("g").attr("transform", `translate(${size / 2}, ${size / 2})`);
+  const svgRender = async () => {
+    await tick();
+    const svg = select(".wheel")
+      .append("svg")
+      .attr("width", size)
+      .attr("height", size)
+      .append("g")
+      .attr("transform", `translate(${size / 2}, ${size / 2})`);
     const pieGenerator = pie().value(1);
     const dataWithArc = pieGenerator(items);
     const arcGenerator = arc().innerRadius(0).outerRadius(radius);
-    svg.selectAll("mySlices").data(dataWithArc).enter().append("path").attr("d", arcGenerator).attr("fill", (d, i) => colors[i])    
-    svg.selectAll('mySlices').data(dataWithArc).enter().append('text').text((_,i)=> items[i]).attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`).style("font-size", 17).attr('fill', 'white').style('rotate', (_, i)=> `${((360/items.length) * i)  }turn`)
-  }
-  
-  
+    svg
+      .selectAll("mySlices")
+      .data(dataWithArc)
+      .enter()
+      .append("path")
+      .attr("d", arcGenerator)
+      .attr("fill", (d, i) => colors[i]);
+    svg
+      .selectAll("mySlices")
+      .data(dataWithArc)
+      .enter()
+      .append("text")
+      .text((_, i) => items[i])
+      .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
+      .style("font-size", 17)
+      .attr("fill", textColor)
+      .style("rotate", (_, i) => `${(360 / items.length) * i}turn`);
+  };
+
   onMount(svgRender);
 </script>
 
 <div class="wheel-container" id="wheel-container">
   <div style="rotate :{spinDeg}deg" class="wheel" />
   <Pointer {pointerColor} {pointerSize} />
-
+  <button class="spin-button" on:click={spinWheel}>Spin!</button>
 </div>
-<button class="spin-button" on:click={spinWheel}>Spin!</button>
 
 <style>
   .wheel-container {
@@ -65,7 +82,13 @@
 
   .spin-button {
     position: absolute;
-    top: 75%;
-    left: 49%;
+    border-radius: 50%;
+    translate: -50% -50%;
+    aspect-ratio: 1;
+    top: 50%;
+    left: 50%;
+    background-color: black;
+    border: none;
+    cursor: pointer;
   }
 </style>
