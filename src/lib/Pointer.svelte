@@ -21,9 +21,8 @@
   .pointer {
     position: absolute;
     top: 50%;
-    left: 48.7%;
-    transform: rotate(135deg);
     left: 50%;
-    transform: translate(-50%, -50%) rotate(136deg);
+    translate: -50% -50%;
+    rotate: 138deg;
   }
 </style>
