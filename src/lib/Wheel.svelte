@@ -10,11 +10,12 @@
 
   // passed down props
 
+  export let size = 400;
   export let pointerColor = "black";
+  export let pointerSize = size / 8;
+  export let pointerTextColor = "white";
   export let items = ["yes", "no", "maybe"];
   export let colors = Array.from({ length: items.length }, generateColors);
-  export let size = 400;
-  export let pointerSize = size / 8;
   export let textColor = "white";
 
   $: spinDeg = 360 / items.length;
@@ -23,7 +24,9 @@
   const radius = Math.min(size, size) / 2;
 
   const spinWheel = () => {
-    spinDeg = Math.floor(Math.random() * (10000 - 800) + 800);
+    spinDeg = Math.floor(
+      Math.random() * (10000 - 800) + 800
+    ); /* change to smaller num for turn 0.x */
   };
 
   const svgRender = async () => {
@@ -53,14 +56,14 @@
       .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
       .style("font-size", 17)
       .attr("fill", textColor)
-      .style("rotate", (_, i) => `${(360 / items.length) * i}turn`);
+      .style("rotate", (_, i) => `${(360 / items.length) * i}deg`);
   };
 
   onMount(svgRender);
 </script>
 
 <div class="wheel-container" id="wheel-container">
-  <div style="rotate :{spinDeg}deg" class="wheel" />
+  <div style="rotate :{spinDeg}turn" class="wheel" />
   <Pointer {pointerColor} {pointerSize} />
   <button class="spin-button" on:click={spinWheel}>Spin!</button>
 </div>
@@ -88,6 +91,7 @@
     top: 50%;
     left: 50%;
     background-color: transparent;
+    color: white;
     border: none;
     cursor: pointer;
   }
