@@ -1,13 +1,12 @@
 <script>
   import Pointer from "./Pointer.svelte";
-  import { onMount, afterUpdate } from "svelte";
+  import { onMount, beforeUpdate } from "svelte";
   import { select, arc, pie } from "d3";
 
   const generateColors= ()=>`rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
 
 
   // passed down props
-
   export let pointerColor = "black";
   export let pointerTextColor = 'white'
   export let items = ["yes", "no", "maybe"];
@@ -24,12 +23,17 @@
   const spinWheel = () => {
     spinDeg += Math.random() * 8 + 3;
   };
-
+  let segmentColors = [...colors]
+  
+  const colorArrayLengthMatcher =()=>{
+    if(colors.length !== items.length){
+      segmentColors = Array.from({length: items.length}, (_,i)=>colors[i % colors.length])
+    }
+  }
 
   const svgRender = () => {
-    console.log(colors)
-    colors = Array.from({ length: items.length }, generateColors);
     select('.wheel svg').remove()
+    colorArrayLengthMatcher()
     const svg = select(".wheel")
       .append("svg")
       .attr("width", size)
@@ -45,25 +49,20 @@
       .enter()
       .append("path")
       .attr("d", arcGenerator)
-      .attr("fill", (d, i) => colors[i]);
+      .attr("fill", (d, i) => segmentColors[i]);
     svg
       .selectAll("mySlices")
       .data(dataWithArc)
       .enter()
       .append("text")
       .text((_, i) => items[i])
-      .attr("transform", (d) => {
-        console.log(d)
-        d.endAngle += 3
-        
-        return `translate(${arcGenerator.centroid(d)})`
-      })
+      .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
       .style("font-size", 17)
       .attr("fill", textColor)
       //.style("rotate", (_, i) => `z ${((360 / items.length) * i )}deg`);
   };
-  afterUpdate(svgRender)
-  // onMount(svgRender);
+  beforeUpdate(svgRender)
+  onMount(svgRender);
 </script>
 
 <div class="wheel-container" id="wheel-container">
