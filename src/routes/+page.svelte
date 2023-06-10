@@ -24,16 +24,15 @@
    */
 
   /**
-   * `colorsMap(n)`
+   * `colorsMap(n)` items label
    * @type {(n: string[]) => void}
    * @param {string[]} [n=["orange", "blue", "purple"]] - takes one argument array of strings to map segment colors
    * @returns {void}
    */
-  $: label = ["goodbye", "hello", "orange"];
+  $: items = ["goodbye", "hello", "orange"];
   $: name = "";
   const addName = (i) => {
-    label = [...label, name];
-    console.log(label);
+    items = [...items, name];
   };
 </script>
 
@@ -42,8 +41,8 @@
   <button type="button" on:submit={addName}>Add</button>
 </form>
 
-{#each label as item}
+{#each items as item}
   <p>{item}</p>
 {/each}
 
-<Wheel {label} />
+<Wheel {items} />
