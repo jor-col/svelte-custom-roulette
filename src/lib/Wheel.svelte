@@ -8,6 +8,21 @@
       Math.random() * 255
     )}, ${Math.floor(Math.random() * 255)})`;
 
+  /**
+   * @description function from React Turntable to get item[index] from "pointer" svg segment
+   * @link https://github.com/lijinke666/react-turntable/blob/master/src/index.js
+   */
+  //   getSelectedPrize = () => {
+  //   let startAngle = (this.startRotate * 180) / Math.PI,
+  //     awardAngle = (this.awardRotate * 180) / Math.PI,
+  //     pointerAngle = 90,
+  //     overAngle = (startAngle + pointerAngle) % 360,
+  //     restAngle = 360 - overAngle,
+  //     index = Math.floor(restAngle / awardAngle)
+
+  //   return items[index];
+  // }
+
   // passed down props
 
   export let pointerColor = "black";
@@ -69,7 +84,6 @@
    * @description optional approach to render labels from D3 docs
    * @link https://www.d3indepth.com/shapes/#arc-generator
    */
-
   // svg
   //     .selectAll("mySlices")
   //     .data(dataWithArc)
