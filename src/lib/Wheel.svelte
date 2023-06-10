@@ -3,19 +3,21 @@
   import { onMount, afterUpdate } from "svelte";
   import { select, arc, pie } from "d3";
 
-  const generateColors= ()=>`rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
-
+  const generateColors = () =>
+    `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
+      Math.random() * 255
+    )}, ${Math.floor(Math.random() * 255)})`;
 
   // passed down props
 
   export let pointerColor = "black";
-  export let pointerTextColor = 'white'
+  export let pointerTextColor = "white";
   export let items = ["yes", "no", "maybe"];
   export let colors = Array.from({ length: items.length }, generateColors);
   export let size = 400;
   export let pointerSize = size / 8;
   export let textColor = "white";
-// label
+  // label
   $: spinDeg = 360 / items.length;
 
   /* wheel sizes */
@@ -25,11 +27,10 @@
     spinDeg += Math.random() * 8 + 3;
   };
 
-
   const svgRender = () => {
-    console.log(colors)
+    console.log(colors);
     colors = Array.from({ length: items.length }, generateColors);
-    select('.wheel svg').remove()
+    select(".wheel svg").remove();
     const svg = select(".wheel")
       .append("svg")
       .attr("width", size)
@@ -53,16 +54,42 @@
       .append("text")
       .text((_, i) => items[i])
       .attr("transform", (d) => {
-        console.log(d)
-        d.endAngle += 3
-        
-        return `translate(${arcGenerator.centroid(d)})`
+        console.log(d);
+        d.startAngle -= 0.21 * Math.PI;
+        d.endAngle -= 0.11 * Math.PI;
+
+        return `translate(${arcGenerator.centroid(d)})`;
       })
       .style("font-size", 17)
-      .attr("fill", textColor)
-      //.style("rotate", (_, i) => `z ${((360 / items.length) * i )}deg`);
+      .attr("fill", textColor);
+    // .style("rotate", (_, i) => `z ${((360 / items.length) * i )}deg`); /* <-- prob bad */
   };
-  afterUpdate(svgRender)
+
+  /**
+   * @description optional approach to render labels from D3 docs
+   * @link https://www.d3indepth.com/shapes/#arc-generator
+   */
+
+  // svg
+  //     .selectAll("mySlices")
+  //     .data(dataWithArc)
+  //     .join("text")
+  //     .each(function (d, i) {
+  //       const centroid = arcGenerator.centroid(d);
+  //       console.log("centroid[0]", centroid[0]);
+  //       console.log("centroid[1]", centroid[1]);
+  //       console.log("this", this);
+  //       select(this)
+  //         .attr("display", "block")
+  //         .attr("x", centroid[0])
+  //         .attr("y", centroid[1])
+  //         .attr("dy", "0.33em,")
+  //         .attr("justify-content", "center")
+  //         .text(items[i])
+  //         .attr("fill", textColor);
+  //     });
+
+  afterUpdate(svgRender);
   // onMount(svgRender);
 </script>
 
