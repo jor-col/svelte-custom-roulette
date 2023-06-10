@@ -1,56 +1,35 @@
 <script>
   import Pointer from "./Pointer.svelte";
-  import { onMount, tick } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
   import { select, arc, pie } from "d3";
 
-  const generateColors = () =>
-    `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
-      Math.random() * 255
-    )}, ${Math.floor(Math.random() * 255)})`;
+  const generateColors= ()=>`rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
 
-  const spinWheel = () => {
-    // while (spinDeg - prevSpin < 2) {
-    //   spinDeg = Math.random() * 5; /* change to smaller num for turn 0.x */
-    //   console.log("RESPIN", spinDeg - prevSpin);
-    // }
-    spinDeg += Math.random() * 8 + 3;
-    console.log(spinDeg);
-    // prevSpin = spinDeg;
-  };
 
-  /**
-   * @description function to get items[index] based off selected wheel segment
-   */
-
-  const getSelectedPrize = () => {
-    let startAngle = (this.startRotate * 180) / Math.PI,
-      awardAngle = (this.awardRotate * 180) / Math.PI,
-      pointerAngle = 90,
-      overAngle = (startAngle + pointerAngle) % 360,
-      restAngle = 360 - overAngle,
-      index = Math.floor(restAngle / awardAngle);
-
-    return items[index];
-  };
-
-  let prevSpin = 0;
   // passed down props
 
-  export let size = 400;
   export let pointerColor = "black";
-  export let pointerSize = size / 8;
-  export let pointerTextColor = "white";
+  export let pointerTextColor = 'white'
   export let items = ["yes", "no", "maybe"];
   export let colors = Array.from({ length: items.length }, generateColors);
+  export let size = 400;
+  export let pointerSize = size / 8;
   export let textColor = "white";
-
-  $: spinDeg = 1 / items.length;
+// label
+  $: spinDeg = 360 / items.length;
 
   /* wheel sizes */
-  const radius = Math.min(size, size) / 2;
+  $: radius = Math.min(size, size) / 2;
 
-  const svgRender = async () => {
-    await tick();
+  const spinWheel = () => {
+    spinDeg += Math.random() * 8 + 3;
+  };
+
+
+  const svgRender = () => {
+    console.log(colors)
+    colors = Array.from({ length: items.length }, generateColors);
+    select('.wheel svg').remove()
     const svg = select(".wheel")
       .append("svg")
       .attr("width", size)
@@ -73,15 +52,18 @@
       .enter()
       .append("text")
       .text((_, i) => items[i])
-      .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
+      .attr("transform", (d) => {
+        console.log(d)
+        d.endAngle += 3
+        
+        return `translate(${arcGenerator.centroid(d)})`
+      })
       .style("font-size", 17)
       .attr("fill", textColor)
-      // .style("writing-mode", "vertical-rl")
-      // .style("text-orientation", "upright");
-      .style("rotate", (_, i) => `${(360 / items.length) * i}deg`); // Math.PI ?
+      //.style("rotate", (_, i) => `z ${((360 / items.length) * i )}deg`);
   };
-
-  onMount(svgRender);
+  afterUpdate(svgRender)
+  // onMount(svgRender);
 </script>
 
 <div class="wheel-container" id="wheel-container">
@@ -111,7 +93,7 @@
     position: absolute;
     border-radius: 50%;
     translate: -50% -50%;
-    aspect-ratio: 1;
+    aspect-ratio: 1/1;
     top: 50%;
     left: 50%;
     background-color: transparent;
