@@ -1,6 +1,6 @@
 <script>
   import Pointer from "./Pointer.svelte";
-  import { onMount, tick } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
   import { select, arc, pie } from "d3";
 
   const generateColors = () =>
@@ -10,14 +10,14 @@
 
   // passed down props
 
-  export let pointerColor = "black";
-  export let items = ["yes", "no", "maybe"];
-  export let colors = Array.from({ length: items.length }, generateColors);
+  export let pointerColor = "green";
+  export let label = ["yes", "no", "maybe"];
+  export let colors = Array.from({ length: label.length }, generateColors);
   export let size = 400;
   export let pointerSize = size / 8;
   export let textColor = "white";
 
-  $: spinDeg = 360 / items.length;
+  $: spinDeg = 360 / label.length;
 
   /* wheel sizes */
   const radius = Math.min(size, size) / 2;
@@ -25,9 +25,14 @@
   const spinWheel = () => {
     spinDeg = Math.floor(Math.random() * (10000 - 800) + 800);
   };
-
-  const svgRender = async () => {
-    await tick();
+  let items = [...label]
+	afterUpdate(() => {
+		if (items !== label)svgRender()
+	});
+  const svgRender = () => {
+    
+    select('.wheel svg').remove()
+    
     const svg = select(".wheel")
       .append("svg")
       .attr("width", size)
@@ -35,7 +40,7 @@
       .append("g")
       .attr("transform", `translate(${size / 2}, ${size / 2})`);
     const pieGenerator = pie().value(1);
-    const dataWithArc = pieGenerator(items);
+    const dataWithArc = pieGenerator(label);
     const arcGenerator = arc().innerRadius(0).outerRadius(radius);
     svg
       .selectAll("mySlices")
@@ -49,14 +54,14 @@
       .data(dataWithArc)
       .enter()
       .append("text")
-      .text((_, i) => items[i])
+      .text((_, i) => label[i])
       .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
       .style("font-size", 17)
       .attr("fill", textColor)
-      .style("rotate", (_, i) => `${(360 / items.length) * i}turn`);
+      //.style("rotate", (_, i) => `${(360 / label.length) * i}deg`);
   };
 
-  onMount(svgRender);
+  // onMount(svgRender);
 </script>
 
 <div class="wheel-container" id="wheel-container">
@@ -84,7 +89,7 @@
     position: absolute;
     border-radius: 50%;
     translate: -50% -50%;
-    aspect-ratio: 1;
+    aspect-ratio: 1/1;
     top: 50%;
     left: 50%;
     background-color: transparent;
