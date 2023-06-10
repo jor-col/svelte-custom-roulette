@@ -8,6 +8,32 @@
       Math.random() * 255
     )}, ${Math.floor(Math.random() * 255)})`;
 
+  const spinWheel = () => {
+    // while (spinDeg - prevSpin < 2) {
+    //   spinDeg = Math.random() * 5; /* change to smaller num for turn 0.x */
+    //   console.log("RESPIN", spinDeg - prevSpin);
+    // }
+    spinDeg += Math.random() * 8 + 3;
+    console.log(spinDeg);
+    // prevSpin = spinDeg;
+  };
+
+  /**
+   * @description function to get items[index] based off selected wheel segment
+   */
+
+  const getSelectedPrize = () => {
+    let startAngle = (this.startRotate * 180) / Math.PI,
+      awardAngle = (this.awardRotate * 180) / Math.PI,
+      pointerAngle = 90,
+      overAngle = (startAngle + pointerAngle) % 360,
+      restAngle = 360 - overAngle,
+      index = Math.floor(restAngle / awardAngle);
+
+    return items[index];
+  };
+
+  let prevSpin = 0;
   // passed down props
 
   export let size = 400;
@@ -18,16 +44,10 @@
   export let colors = Array.from({ length: items.length }, generateColors);
   export let textColor = "white";
 
-  $: spinDeg = 360 / items.length;
+  $: spinDeg = 1 / items.length;
 
   /* wheel sizes */
   const radius = Math.min(size, size) / 2;
-
-  const spinWheel = () => {
-    spinDeg = Math.floor(
-      Math.random() * (10000 - 800) + 800
-    ); /* change to smaller num for turn 0.x */
-  };
 
   const svgRender = async () => {
     await tick();
@@ -56,16 +76,20 @@
       .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
       .style("font-size", 17)
       .attr("fill", textColor)
-      .style("rotate", (_, i) => `${(360 / items.length) * i}deg`);
+      // .style("writing-mode", "vertical-rl")
+      // .style("text-orientation", "upright");
+      .style("rotate", (_, i) => `${(360 / items.length) * i}deg`); // Math.PI ?
   };
 
   onMount(svgRender);
 </script>
 
 <div class="wheel-container" id="wheel-container">
-  <div style="rotate :{spinDeg}turn" class="wheel" />
+  <div style="rotate: {spinDeg}turn" class="wheel" />
   <Pointer {pointerColor} {pointerSize} />
-  <button class="spin-button" on:click={spinWheel}>Spin!</button>
+  <button class="spin-button" on:click={spinWheel} color={pointerTextColor}
+    >Spin!</button
+  >
 </div>
 
 <style>
@@ -80,7 +104,7 @@
 
   .wheel {
     clip-path: circle(45%);
-    transition: 2s ease-in-out;
+    transition: 5s ease-in-out;
   }
 
   .spin-button {
