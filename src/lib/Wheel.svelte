@@ -1,6 +1,6 @@
 <script>
   import Pointer from "./Pointer.svelte";
-  import { onMount, beforeUpdate } from "svelte";
+  import { onMount, beforeUpdate, afterUpdate } from "svelte";
   import { select, arc, pie } from "d3";
 
   let isSpinning = false;
@@ -84,7 +84,7 @@
       .enter()
       .append("path")
       .attr("d", arcGenerator)
-      .attr("fill", (d, i) => segmentColors[i]);
+      .attr("fill", (_, i) => segmentColors[i]);
     svg
       .selectAll("mySlices")
       .data(dataWithArc)
