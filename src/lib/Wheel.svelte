@@ -33,6 +33,10 @@
   export let colors = Array.from({ length: items.length }, generateColors);
   export let size = 400;
   export let pointerSize = size / 8;
+  /**
+   * @template string
+   * @example "white"
+   */
   export let textColor = "white";
 
   /* label */
@@ -63,6 +67,9 @@
         { length: items.length },
         (_, i) => colors[i % colors.length]
       );
+    }
+    if (segmentColors[0] == segmentColors[segmentColors.length - 1]) {
+      segmentColors[segmentColors.length - 1] = segmentColors.at(1);
     }
   };
 
