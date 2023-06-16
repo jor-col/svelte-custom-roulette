@@ -3,6 +3,9 @@
   import { onMount, afterUpdate } from "svelte";
   import { select, arc, pie } from "d3";
 
+  let isSpinning = false;
+  let spinDeg = 360;
+
   const generateColors = () =>
     `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
       Math.random() * 255
@@ -32,18 +35,30 @@
   export let size = 400;
   export let pointerSize = size / 8;
   export let textColor = "white";
-  // label
-  $: spinDeg = 360 / items.length;
+
+  /* label */
+  // $: spinDeg = 360 / items.length;
+  // <-- this reactivity is an artifact && was causing large spinDeg differential
+  // <-- upon svgRender happening on DOM update
 
   /* wheel sizes */
   $: radius = Math.min(size, size) / 2;
 
-  const spinWheel = () => {
-    spinDeg += Math.random() * 8 + 3;
+  const spinWheel = (e) => {
+    console.log("SPIN EVENT:", e);
+    e.stopPropagation();
+    if (!isSpinning) {
+      isSpinning = true;
+      spinDeg += Math.random() * 8 + 3;
+
+      setTimeout(() => {
+        isSpinning = false;
+      }, 100);
+    }
   };
 
   const svgRender = () => {
-    console.log(colors);
+    console.log("SVG RENDERED:", colors, "spinDeg:", spinDeg);
     colors = Array.from({ length: items.length }, generateColors);
     select(".wheel svg").remove();
     const svg = select(".wheel")

@@ -1,5 +1,5 @@
 <script>
-  export let pointerColor 
+  export let pointerColor;
   export let pointerSize;
 </script>
 
@@ -22,6 +22,6 @@
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    rotate: 138deg;
+    rotate: 135deg;
   }
 </style>
