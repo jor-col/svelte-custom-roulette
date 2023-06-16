@@ -31,11 +31,11 @@
    */
 
   $: items = ["goodbye", "hello", "orange"];
+  $: colors = ["red", "green", "blue"];
+
   $: name = "";
-  const addName = (e) => {
-    console.log("ADD EVENT:", e);
-    e.stopPropagation();
-    console.log("ADD NAME:", e);
+
+  const addName = () => {
     items = [...items, name];
   };
 </script>
@@ -49,4 +49,4 @@
   <p>{item}</p>
 {/each}
 
-<Wheel {items} />
+<Wheel {items} {colors} />

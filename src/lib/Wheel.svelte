@@ -1,6 +1,6 @@
 <script>
   import Pointer from "./Pointer.svelte";
-  import { onMount, afterUpdate } from "svelte";
+  import { onMount, beforeUpdate } from "svelte";
   import { select, arc, pie } from "d3";
 
   let isSpinning = false;
@@ -27,7 +27,6 @@
   // }
 
   // passed down props
-
   export let pointerColor = "black";
   export let pointerTextColor = "white";
   export let items = ["yes", "no", "maybe"];
@@ -56,11 +55,20 @@
       }, 100);
     }
   };
+  let segmentColors = [...colors];
+
+  const colorArrayLengthMatcher = () => {
+    if (colors.length !== items.length) {
+      segmentColors = Array.from(
+        { length: items.length },
+        (_, i) => colors[i % colors.length]
+      );
+    }
+  };
 
   const svgRender = () => {
-    console.log("SVG RENDERED:", colors, "spinDeg:", spinDeg);
-    colors = Array.from({ length: items.length }, generateColors);
     select(".wheel svg").remove();
+    colorArrayLengthMatcher();
     const svg = select(".wheel")
       .append("svg")
       .attr("width", size)
@@ -76,25 +84,18 @@
       .enter()
       .append("path")
       .attr("d", arcGenerator)
-      .attr("fill", (d, i) => colors[i]);
+      .attr("fill", (d, i) => segmentColors[i]);
     svg
       .selectAll("mySlices")
       .data(dataWithArc)
       .enter()
       .append("text")
       .text((_, i) => items[i])
-      .attr("transform", (d) => {
-        console.log(d);
-        d.startAngle -= 0.21 * Math.PI;
-        d.endAngle -= 0.11 * Math.PI;
-
-        return `translate(${arcGenerator.centroid(d)})`;
-      })
+      .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
       .style("font-size", 17)
       .attr("fill", textColor);
     // .style("rotate", (_, i) => `z ${((360 / items.length) * i )}deg`); /* <-- prob bad */
   };
-
   /**
    * @description optional approach to render labels from D3 docs
    * @link https://www.d3indepth.com/shapes/#arc-generator
@@ -119,6 +120,8 @@
   //     });
 
   afterUpdate(svgRender);
+  // beforeUpdate(svgRender)
+  // onMount(svgRender);
   // onMount(svgRender);
 </script>
 
