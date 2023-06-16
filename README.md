@@ -11,6 +11,7 @@
 </p>
 <p align="center">
   <a href="https://github.com/jor-col/svelte-custom-roulette" target="blank"><img src="https://img.shields.io/github/forks/jor-col/svelte-custom-roulette?style=social"></img></a>
+  <a href="https://github.com/jor-col/svelte-custom-roulette" target="blank"><img src="https://img.shields.io/github/stars/jor-col?style=social"></img></a>
 </p>
 <br />
 <div align="center">
