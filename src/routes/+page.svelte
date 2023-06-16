@@ -29,9 +29,10 @@
    * @param {string[]} [n=["orange", "blue", "purple"]] - takes one argument array of strings to map segment colors
    * @returns {void}
    */
+
   $: items = ["goodbye", "hello", "orange"];
-  $: colors = ['red', 'green', 'blue']
-  
+  $: colors = ["red", "green", "blue"];
+
   $: name = "";
 
   const addName = () => {
@@ -39,9 +40,9 @@
   };
 </script>
 
-<form on:submit={addName}>
-  <input  bind:value={name} type="text" />
-  <button type="button" on:submit={addName}>Add</button>
+<form>
+  <input bind:value={name} type="text" />
+  <button type="button" on:click={addName}>Add</button>
 </form>
 
 {#each items as item}

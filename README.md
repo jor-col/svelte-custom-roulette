@@ -71,37 +71,37 @@ $ npm i svelte-custom-roulette
     <tbody>
       <tr>
         <td><code>items</code></td>
-        <td>String[]</td>
+        <td><code>String[]</code></td>
         <td><code>["yes", "no", "maybe"]</code></td>
         <td>pass an array to populate wheel segments with custom items to documentation inside the README</td>
       </tr>
       <tr>
         <td><code>size</code></td>
-        <td>Number</td>
+        <td><code>Number</code></td>
         <td><code>400</code></td>
         <td>pass a number for the size of the wheel, aspect ratio is 1</td>
       </tr>
       <tr>
         <td><code>colors</code></td>
-        <td>String[]</td>
+        <td><code>String[]</code></td>
         <td><code>[randomly generated === items.length]</code></td>
         <td>pass an array of strings representing the colors you would like to override wheel segments. <i>this prop is <a href="#experimental">experimental</a></i></td>
       </tr>
       <tr>
         <td><code>textColor</code></td>
-        <td>String</td>
+        <td><code>String</code></td>
         <td><code>"white"</code></td>
         <td>pass a color to override the color of wheel segments' text to documentation inside the README</td>
       </tr>
       <tr>
         <td><code>pointerColor</code></td>
-        <td>String</td>
+        <td><code>String</code></td>
         <td><code>"black"</code></td>
         <td>pass a string for the color of the pointer you want</td>
       </tr>
       <tr>
         <td><code>pointerSize</code></td>
-        <td>Number</td>
+        <td><code>Number</code></td>
         <td><code>size / 8</code></td>
         <td>pass a number to size the pointer in <code>px</code> to the center of the wheel, by default this will be 1/8 of the wheel size</td>
       </tr>
