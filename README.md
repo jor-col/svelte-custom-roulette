@@ -128,7 +128,7 @@ $ npm i svelte-custom-roulette
 
 <br />
 <h2 align="center"><b>License</b></h2>
-Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed. Please propogate within whatever circumstances you wish.
+Svelte Custom Roulette is <a href="./LICENSE">MIT</a> licensed. Please propogate within whatever circumstances you wish.
 
 <!-- [UNLICENSE](/UNLICENSE) -->
 
