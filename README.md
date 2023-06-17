@@ -16,7 +16,7 @@
 <br />
 <div align="center">
   <h2><b><a href="#experimental" aria-hidden="true" color="white">W.I.P</a></b></h2>
-  <i>As of 6/05/23 this Library is pre-release (v0.1.1). It is stable and can accept props, however, custom labels need to be rotated.</i> <a href="https://www.npmjs.com/package/svelte-custom-roulette" target="blank">published npm package</a>
+  <i>As of 6/16/23 this Library is release (v0.1.1). It is stable and can accept props, however, custom labels need to be rotated.</i> <a href="https://www.npmjs.com/package/svelte-custom-roulette" target="blank">published npm package</a>
 </div>
 
 <hr />
@@ -105,6 +105,12 @@ $ npm i svelte-custom-roulette
         <td><code>size / 8</code></td>
         <td>pass a number to size the pointer in <code>px</code> to the center of the wheel, by default this will be 1/8 of the wheel size</td>
       </tr>
+      <tr>
+        <td><code>pointerTextColor</code></td>
+        <td><code>String</code></td>
+        <td><code>"white"</code></td>
+        <td>pass a string to set text color inside pointer</td>
+      </tr>
     </tbody>
 
   </table>
@@ -128,7 +134,7 @@ $ npm i svelte-custom-roulette
 
 <br />
 <h2 align="center"><b>License</b></h2>
-Svelte Custom Roulette is <a href="http://unlicense.org/">UNLICENSE</a> licensed. Please propogate within whatever circumstances you wish.
+Svelte Custom Roulette is <a href="./LICENSE">MIT</a> licensed. Please propogate within whatever circumstances you wish.
 
 <!-- [UNLICENSE](/UNLICENSE) -->
 
