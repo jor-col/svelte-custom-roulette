@@ -99,6 +99,7 @@
       .append("text")
       .text((_, i) => items[i])
       .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
+      // TODO add another transform here to rotate the "label" which is on the arc centroid
       .style("font-size", 17)
       .attr("fill", textColor);
     // .style("rotate", (_, i) => `z ${((360 / items.length) * i )}deg`); /* <-- prob bad */
