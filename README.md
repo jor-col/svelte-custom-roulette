@@ -44,16 +44,15 @@ $ npm i svelte-custom-roulette
     "item 2",
     "item 3",
   ]
+</script>
 
-  <Wheel
+<Wheel
     {items}
     size={800}
     textColor="black"
     pointerColor="purple"
     pointerSize={60}
-    >
-
-</script>
+  />
 ```
 
 <div class="table-container" align="center">
